@@ -26,12 +26,6 @@ coverage/
 *.tar
 *.env
 
-# Trivy Scan Results
-*.json
-*.xml
-*.html
-*.txt
-
 # IDE/Editor files
 .idea/
 .vscode/
