@@ -5,21 +5,17 @@ This example demonstrates how to create a secure Docker image using best practic
 - Using a minimal base image (e.g., Alpine)
 - Running as a non-root user
 
----
-
 ## Files in This Directory
 
 - `Dockerfile`: Example secure Dockerfile
-- `app/`: Contains the To-Do app with Dockerfile and application code
 - `trivy-scan-results/`: Placeholder for Trivy vulnerability scan results
-
----
 
 ## Steps to Build and Run
 
-1. **Build the Image**:
+1. **Set the Build Context to the Repository Root**:
+   To ensure the shared `app/` folder is included in the build, run the following command from the root of the repository:
    ```bash
-   docker build -t secure-node-app .
+   docker build -t secure-node-app -f 01-secure-docker-images/Dockerfile .
    ```
 
 2. **Run the Container**:
@@ -33,18 +29,7 @@ This example demonstrates how to create a secure Docker image using best practic
    trivy image secure-node-app
    ```
 
----
-
 ## Learn More
 
 - Article: [Secure Docker Images](https://kelcode.co.uk/secure-docker-images/)
 - Tool: [Trivy Documentation](https://aquasecurity.github.io/trivy/)
-
----
-
-### **Placeholder for `trivy-scan-results/`**
-Add a `.gitkeep` file to ensure the folder is pushed to the repository, and include a note in the `README.md`:
-
-```plaintext
-# This folder will contain example Trivy vulnerability scan results
-```

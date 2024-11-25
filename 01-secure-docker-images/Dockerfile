@@ -5,12 +5,12 @@ FROM node:22.9.0-alpine
 WORKDIR /usr/src/app
 
 # Install dependencies
-COPY app/package.json ./
+COPY ../app/package.json ./
 
 RUN npm install
 
 # Copy application files
-COPY app/ .
+COPY ../app/ .
 
 # Use a non-root user
 USER node

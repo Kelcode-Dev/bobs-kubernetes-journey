@@ -2,14 +2,10 @@
 
 This folder contains example outputs from Trivy, a vulnerability scanning tool for container images.
 
----
-
 ## Files
 
 - `scan-summary.txt`: A simple text summary of vulnerabilities in the `secure-node-app` image.
 - `scan-detailed.json`: Detailed JSON output from Trivy, showing vulnerability descriptions, severities, and fixes.
-
----
 
 ## How to Generate Your Own Scans
 
@@ -28,8 +24,6 @@ This folder contains example outputs from Trivy, a vulnerability scanning tool f
      trivy image secure-node-app --format json > scan-detailed.json
      ```
 
----
-
 ## Summary of Results
 
 - **Summary**:
@@ -44,8 +38,6 @@ This folder contains example outputs from Trivy, a vulnerability scanning tool f
   - **cross-spawn**:
     - CVE-2024-21538: Regular Expression Denial of Service (ReDoS).
     - [Details](https://avd.aquasec.com/nvd/cve-2024-21538)
-
----
 
 ## Learn More
 
