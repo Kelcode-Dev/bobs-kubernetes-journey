@@ -71,17 +71,38 @@ Replace `secure-node-app` with the appropriate image name for other parts.
 
 ## 📚 Articles in the Series
 
-1. **[Secure Docker Images](https://kelcode.co.uk/building-secure-docker-images-best-practices-for-security-first-containers/)**
-   Learn how to build secure Docker images with pinned base images and non-root users.
+1. **[The Quest for Secure Docker Images: Bob’s Journey](https://kelcode.co.uk/building-secure-docker-images-best-practices-for-security-first-containers/)**
+   Learn how Bob builds secure Docker images with pinned base images and non-root users.
 
-2. **[Multi-Stage Builds](https://kelcode.co.uk/mastering-multi-stage-docker-builds/)**
+2. **[Bob's Journey to Mastering Multi-Stage Builds](https://kelcode.co.uk/mastering-multi-stage-docker-builds/)**
    Master multi-stage builds for leaner and faster containers.
 
-3. **[Secrets and ConfigMaps](#https://kelcode.co.uk/bobs-journey-into-secrets-and-config-maps/)**
+3. **[Bob's Journey to Mastering Docker Content Trust and Image Signing](https://kelcode.co.uk/bobs-journey-to-mastering-dct/)**
+   Understand Docker Content Trust and the importance of image signing.
+
+4. **[Bob's Kubernetes Journey Begins: Why Security Is Essential](https://kelcode.co.uk/bobs-kubernetes-journey-begins-why-security-is-essential/)**
+   Explore the basics of Kubernetes and why security matters.
+
+5. **[Bob's Deep Dive into Kubernetes Pod Security](https://kelcode.co.uk/securing-your-kubernetes-pods-a-deep-dive/)**
+   Learn how to secure Kubernetes Pods using best practices and policies.
+
+6. **[Bob's Journey into Secrets and Config Maps](https://kelcode.co.uk/bobs-journey-into-secrets-and-config-maps/)**
    Manage sensitive data securely using Kubernetes Secrets and ConfigMaps.
 
-4. **[Helm Basics](#)**
-   Discover Helm and learn to deploy applications with reusable charts.
+7. **[Bob's Journey to Persistence: Keeping Your Data Alive](https://kelcode.co.uk/bobs-journey-to-persistence-keeping-your-data-alive/)**
+   Learn how to use Persistent Volumes and Persistent Volume Claims in Kubernetes.
+
+8. **[Bob's Journey to Secure Ingress](https://kelcode.co.uk/exposing_your_applications_with_ingress/)**
+   Discover how to manage external access to your Kubernetes cluster securely.
+
+9. **[Bob's Journey to Secure Networking: Controlling the Flow](https://kelcode.co.uk/kubernetes-secure-networking-policies/)**
+   Implement Network Policies to control communication between Pods and external systems.
+
+10. **[Bob’s Journey into Application Observability: Uncovering Hidden Threats](https://kelcode.co.uk/kubernetes-uncovering-hidden-threats/)**
+    Explore tools and techniques for monitoring, logging, and tracing your Kubernetes applications.
+
+11. **[Bob's Journey into Helm: Charting a New Course](https://kelcode.co.uk/bobs-journey-into-helm-charting-a-new-course/)**
+    Discover Helm and learn to deploy applications with reusable charts.
 
 See the full series [here](https://kelcode.co.uk/tag/bobsjourney/) (more coming soon)
 
