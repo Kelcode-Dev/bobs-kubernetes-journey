@@ -27,7 +27,6 @@ coverage/
 *.env
 
 # Trivy Scan Results
-trivy-scan-results/
 *.json
 *.xml
 *.html
