@@ -1,6 +1,6 @@
-# Node.js
-app/node_modules/
-app/package-lock.json
+# Dependency directories
+node_modules/
+bower_components/
 
 # Logs
 logs/
@@ -9,22 +9,39 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# OS generated files
+# OS-specific files
 .DS_Store
 Thumbs.db
 
-# Docker-specific
+# Environment files
+.env
+.env.*
+
+# Build outputs
+dist/
+build/
+coverage/
+
+# Docker-related
 *.tar
 *.env
 
 # Trivy Scan Results
-*.html
+trivy-scan-results/
+*.json
 *.xml
-user-generated-trivy-reports/
+*.html
+*.txt
 
-# Miscellaneous
-.env
-*.swp
-*.bak
+# IDE/Editor files
 .idea/
 .vscode/
+*.swp
+*.bak
+
+# Miscellaneous
+*.tmp
+*.temp
+*.log
+*.pid
+*.seed
