@@ -1,0 +1,149 @@
+NAME: todo
+LAST DEPLOYED: Tue Nov 26 12:13:17 2024
+NAMESPACE: mytodoapp
+STATUS: pending-install
+REVISION: 1
+TEST SUITE: None
+HOOKS:
+MANIFEST:
+---
+# Source: my-todo-list/templates/serviceaccount.yaml
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: todo-my-todo-list
+  labels:
+    helm.sh/chart: my-todo-list-0.1.0
+    app.kubernetes.io/name: my-todo-list
+    app.kubernetes.io/instance: todo
+    app.kubernetes.io/version: "1.0.0"
+    app.kubernetes.io/managed-by: Helm
+automountServiceAccountToken: false
+---
+# Source: my-todo-list/templates/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: todo-my-todo-list
+  labels:
+    helm.sh/chart: my-todo-list-0.1.0
+    app.kubernetes.io/name: my-todo-list
+    app.kubernetes.io/instance: todo
+    app.kubernetes.io/version: "1.0.0"
+    app.kubernetes.io/managed-by: Helm
+spec:
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: 3000
+      protocol: TCP
+      name: http
+  selector:
+    app.kubernetes.io/name: my-todo-list
+    app.kubernetes.io/instance: todo
+---
+# Source: my-todo-list/templates/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todo-my-todo-list
+  labels:
+    helm.sh/chart: my-todo-list-0.1.0
+    app.kubernetes.io/name: my-todo-list
+    app.kubernetes.io/instance: todo
+    app.kubernetes.io/version: "1.0.0"
+    app.kubernetes.io/managed-by: Helm
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: my-todo-list
+      app.kubernetes.io/instance: todo
+  template:
+    metadata:
+      annotations:
+        owner: bobs_email@example.com
+      labels:
+        helm.sh/chart: my-todo-list-0.1.0
+        app.kubernetes.io/name: my-todo-list
+        app.kubernetes.io/instance: todo
+        app.kubernetes.io/version: "1.0.0"
+        app.kubernetes.io/managed-by: Helm
+    spec:
+      imagePullSecrets:
+        - name: imagecredentials-secret
+      serviceAccountName: todo-my-todo-list
+      securityContext:
+        fsGroup: 1001
+        runAsGroup: 1001
+        runAsUser: 1001
+      containers:
+        - name: my-todo-list
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+              - ALL
+            readOnlyRootFilesystem: true
+            runAsGroup: 1001
+            runAsNonRoot: true
+            runAsUser: 1001
+            seccompProfile:
+              type: RuntimeDefault
+          image: "my.registry.example.com/bob/my-todo-list:1.0.0"
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 3000
+              protocol: TCP
+          startupProbe:
+            httpGet:
+              path: /
+              port: http
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+          resources:
+            {}
+---
+# Source: my-todo-list/templates/ingress.yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: todo-my-todo-list
+  labels:
+    helm.sh/chart: my-todo-list-0.1.0
+    app.kubernetes.io/name: my-todo-list
+    app.kubernetes.io/instance: todo
+    app.kubernetes.io/version: "1.0.0"
+    app.kubernetes.io/managed-by: Helm
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-issuer
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    traefik.ingress.kubernetes.io/router.tls: "true"
+spec:
+  ingressClassName: traefik
+  tls:
+    - hosts:
+        - my-todo-list.example.com
+      secretName: todo-my-todo-list-tls
+  rules:
+    - host: my-todo-list.example.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: todo-my-todo-list
+                port:
+                  number: 80
+
+NOTES:
+1. Get the application URL by running these commands:
+  https://my-todo-list.example.com

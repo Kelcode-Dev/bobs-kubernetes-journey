@@ -1,0 +1,89 @@
+# @done
+replicaCount: 1
+
+# @done
+image:
+  repository: my.registry.example.com/bob/my-todo-list
+  pullPolicy: IfNotPresent
+  tag: 1.0.0
+
+# @done
+imagePullSecrets:
+  - name: imagecredentials-secret
+
+# This is to override the chart name.
+nameOverride: ""
+fullnameOverride: ""
+
+# @done
+serviceAccount:
+  create: true
+
+# @done
+pods:
+  annotations:
+    owner: bobs_email@example.com
+  labels: {}
+  securityContext:
+    runAsUser: 1001
+    runAsGroup: 1001
+    fsGroup: 1001
+
+# @done
+securityContext:
+  capabilities:
+    drop:
+    - ALL
+  readOnlyRootFilesystem: true
+  runAsNonRoot: true
+  runAsUser: 1001
+  runAsGroup: 1001
+  allowPrivilegeEscalation: false
+  seccompProfile:
+    type: RuntimeDefault
+
+# @done
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: 3000
+
+# @done
+ingress:
+  enabled: true
+  className: traefik
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    traefik.ingress.kubernetes.io/router.tls: "true"
+    cert-manager.io/cluster-issuer: letsencrypt-issuer
+  host: my-todo-list.example.com
+
+# @done
+resources: {}
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+# @done
+probes:
+  - name: startupProbe
+    enabled: true
+    probe:
+      httpGet:
+        path: /
+        port: http
+  - name: livenessProbe
+    enabled: true
+    probe:
+      httpGet:
+        path: /
+        port: http
+  - name: readinessProbe
+    enabled: true
+    probe:
+      httpGet:
+        path: /
+        port: http
