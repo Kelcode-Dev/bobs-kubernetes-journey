@@ -104,6 +104,12 @@ Replace `secure-node-app` with the appropriate image name for other parts.
 11. **[Bob's Journey into Helm: Charting a New Course](https://kelcode.co.uk/bobs-journey-into-helm-charting-a-new-course/)**
     Discover Helm and learn to deploy applications with reusable charts.
 
+12. **[Bob's Journey Continues: Build a Secure Chart](https://kelcode.co.uk/build-a-secure-chart-for-a-todo-app/)**
+    Discover Helm and learn to deploy applications with reusable charts.
+
+13. **[Bob's Journey into Advanced Helm: Mastering Charts](https://kelcode.co.uk/bobs-journey-into-advanced-helm-mastering-charts/)**
+    Discover Helm and learn to deploy applications with reusable charts.
+
 See the full series [here](https://kelcode.co.uk/tag/bobsjourney/) (more coming soon)
 
 ## 🌟 Contributing

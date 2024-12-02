@@ -1,0 +1,63 @@
+# Default resource settings
+resources:
+  requests:
+    memory: "128Mi"
+    cpu: "100m"
+  limits:
+    memory: "256Mi"
+    cpu: "200m"
+
+# Dynamic applications
+apps:
+  - name: frontend
+    enabled: true
+    replicas: 3
+    image:
+      repository: myapp/frontend
+      tag: v1.0
+    resources: # Optional, overrides global defaults if specified
+      requests:
+        memory: "512Mi"
+        cpu: "500m"
+      limits:
+        memory: "1Gi"
+        cpu: "1"
+  - name: backend
+    enabled: true
+    replicas: 2
+    image:
+      repository: myapp/backend
+      tag: v1.0
+  - name: worker
+    enabled: false
+    replicas: 1
+    image:
+      repository: myapp/worker
+      tag: v1.0
+
+# Dynamic volumes
+volumes:
+  - name: app-frontend-storage
+    enabled: true
+    storageClassName: fast
+    accessModes:
+      - ReadWriteOnce
+    resources:
+      requests:
+        storage: 5Gi
+  - name: app-backend-storage
+    enabled: true
+    storageClassName: standard
+    accessModes:
+      - ReadWriteOnce
+    resources:
+      requests:
+        storage: 10Gi
+  - name: app-worker-storage
+    enabled: false
+    storageClassName: standard
+    accessModes:
+      - ReadWriteMany
+    resources:
+      requests:
+        storage: 1Gi

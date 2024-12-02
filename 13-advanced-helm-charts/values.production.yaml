@@ -1,0 +1,9 @@
+# values.production.yaml
+replicaCount: 5
+resources:
+  requests:
+    memory: "512Mi"
+    cpu: "500m"
+  limits:
+    memory: "1Gi"
+    cpu: "1"

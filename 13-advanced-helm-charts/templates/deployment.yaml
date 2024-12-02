@@ -1,0 +1,17 @@
+# templates/deployment.yaml
+{{- range .Values.apps }}
+{{- if .enabled }}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .name }}
+spec:
+  replicas: {{ .replicas }}
+  template:
+    spec:
+      containers:
+        - name: {{ .name }}
+          image: {{ .image.repository }}:{{ .image.tag }}
+{{- end }}
+{{- end }}
